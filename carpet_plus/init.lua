@@ -1,5 +1,5 @@
 if minetest.get_modpath("default") then
-	register_carpet("default_stone", "default:stone", "Stone Carpet", "default_stone.png", {cracky=3, stone=1})
+	register_carpet({recipe = "default:stone", drop = "disable"})
 	register_carpet("default_cobble", "default:cobble", "Cobblestone Carpet", "default_cobble.png", {cracky=3, stone=2})
 	register_carpet("default_stonebrick", "default:stonebrick", "Stone Brick Carpet", "default_stone_brick.png", {cracky=2, stone=1})
 	register_carpet("default_mossycobble", "default:mossycobble", "Mossy Cobblestone Carpet", "default_mossycobble.png", {cracky=3, stone=1})
