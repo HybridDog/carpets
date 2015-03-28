@@ -12,7 +12,7 @@ if minetest.get_modpath("default") then
 	register_carpet("default_obsidianbrick", "default:obsidianbrick", "Obsidian Brick Carpet", "default_obsidian_brick.png", {cracky=1,level=2})
 	register_carpet("default_dirt", "default:dirt", "Dirt Carpet", "default_dirt.png", {crumbly=3})
 	register_carpet("default_sand", "default:sand", "Sand Carpet", "default_sand.png", {crumbly=3, sand=1})
-	register_carpet("default_desert_sand", "default:desert_sand", "Dirt with Grass Carpet", "default_grass.png", {crumbly=3})
+	register_carpet("default_desert_sand", "default:desert_sand", "Desert Sand Carpet", "default_desert_sand.png", {crumbly=3})
 	register_carpet("default_gravel", "default:gravel", "Gravel Carpet", "default_gravel.png", {crumbly=2})
 	register_carpet("default_clay", "default:clay", "Clay Carpet", "default_clay.png", {crumbly=3})
 	register_carpet("default_snow", "default:snow", "Snow Carpet", "default_snow.png", {crumbly=3})
