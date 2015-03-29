@@ -31,6 +31,13 @@ function register_carpet(name, recipe, desc, texture, group)
 	else
 		data = recipe
 	end
+
+	-- fix for automatically made names
+	if not data then
+		data = name
+		name = nil
+	end
+
 	recipe = data.recipe
 	data.recipe = nil
 	local recipedata = table.copy(minetest.registered_nodes[recipe])
