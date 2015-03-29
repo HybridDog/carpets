@@ -67,7 +67,10 @@ function register_carpet(name, recipe, desc, texture, group)
 	recipedata.tile_images = nil
 
 	recipedata.groups = recipedata.groups or {oddly_breakable_by_hand=3}
-	recipedata.groups.falling_node = 1
+	if recipedata.falling_carpet ~= false then
+		recipedata.groups.falling_node = 1
+	end
+	recipedata.falling_carpet = nil
 
 	if not name then
 		name = string.split(recipe, ":")
@@ -75,21 +78,26 @@ function register_carpet(name, recipe, desc, texture, group)
 	end
 	name = "carpet:"..name
 
+	local limit_placing = recipedata.nofly_carpet
+	recipedata.nofly_carpet = nil
+
 	minetest.register_node(":"..name, recipedata)
 
-	-- disallow carpets to be placed onto other ones
-	minetest.on_place(name, function(_, _, pointed_thing)
-		if not pointed_thing then
-			return
-		end
-		local pos = pointed_thing.under
-		local above = pointed_thing.above
-		if above.y == pos.y+1
-		and minetest.get_node(pos).name == name then
-			return
-		end
-		return true
-	end)
+	if limit_placing ~= false then
+		-- disallow carpets to be placed onto other ones
+		minetest.on_place(name, function(_, _, pointed_thing)
+			if not pointed_thing then
+				return
+			end
+			local pos = pointed_thing.under
+			local above = pointed_thing.above
+			if above.y == pos.y+1
+			and minetest.get_node(pos).name == name then
+				return
+			end
+			return true
+		end)
+	end
 	
 	minetest.register_craft({
 		output = name.." 32",
