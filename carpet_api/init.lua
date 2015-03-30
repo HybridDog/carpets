@@ -1,3 +1,5 @@
+dofile(minetest.get_modpath("carpet_api").."/settings.lua")
+
 minetest.on_place = minetest.on_place or function(name, func)
 	local previous_on_place = minetest.registered_nodes[name].on_place
 	minetest.override_item(name, {
@@ -68,8 +70,8 @@ function register_carpet(name, recipe, desc, texture, group)
 
 	recipedata.groups = recipedata.groups or {oddly_breakable_by_hand=3}
 
-	recipedata.falling_carpet = true
-	if recipedata.falling_carpet ~= false then
+	if FallingCarpet ~= false
+	and recipedata.groups.falling_node == nil then
 		recipedata.groups.falling_node = 1
 	end
 
@@ -79,12 +81,12 @@ function register_carpet(name, recipe, desc, texture, group)
 	end
 	name = "carpet:"..name
 
-	recipedata.nofly_carpet = true
 	local limit_placing = recipedata.nofly_carpet
 
 	minetest.register_node(":"..name, recipedata)
 
-	if limit_placing ~= false then
+	if limit_placing ~= false
+	and NoFlyCarpet ~= false then
 		-- disallow carpets to be placed onto other ones
 		minetest.on_place(name, function(_, _, pointed_thing)
 			if not pointed_thing then
