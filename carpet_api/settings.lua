@@ -1,2 +1,2 @@
-NoFlyCarpet = false
+NoFlyCarpet = true
 FallingCarpet = true
